@@ -14,7 +14,7 @@
 
 name: build
 
-on: [push, pull_request, dispatch]
+on: [push, pull_request, workflow_dispatch]
 
 env:
   CRATE: sheldon
