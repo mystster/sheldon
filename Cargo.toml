@@ -52,6 +52,7 @@ url = { version = "2.4.1", features = ["serde"] }
 walkdir = "2.4.0"
 which = { version = "5.0.0", default-features = false }
 yansi = "0.5.1"
+shellexpand = "3.0"
 
 [dependencies.clap]
 version = "4.4.8"
