@@ -1,4 +1,5 @@
 use std::path::PathBuf;
+use shellexpand;
 
 use anyhow::{anyhow, Result};
 
@@ -7,7 +8,9 @@ use crate::lock::source::LockedSource;
 
 /// Checks that a Local source directory exists.
 pub fn lock(ctx: &Context, dir: PathBuf) -> Result<LockedSource> {
-    let dir = ctx.expand_tilde(dir);
+    let dir = dir.to_string_lossy();
+    let dir = shellexpand::full(dir.as_ref())?;
+    let dir = PathBuf::from(dir.to_string());
 
     if dir.exists() && dir.is_dir() {
         ctx.log_status("Checked", dir.as_path());
